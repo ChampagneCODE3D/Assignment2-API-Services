@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 2 | API Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Assignment 2 API Services</h1>
+    <nav>
+      <a class="active" href="index.html">Currency Converter</a>
+      <a href="weather.html">Weather Widget</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="card">
+      <h2>Currency Exchange Service</h2>
+      <p>Convert between currencies with live exchange rates.</p>
+
+      <form id="currencyForm" class="grid-form">
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" min="0.01" step="0.01" value="100" required />
+
+        <label for="fromCurrency">From Currency</label>
+        <select id="fromCurrency" required></select>
+
+        <label for="toCurrency">To Currency</label>
+        <select id="toCurrency" required></select>
+
+        <button id="convertBtn" type="submit">Convert</button>
+      </form>
+
+      <p id="rateLine" class="rate-line">Exchange rate will appear here.</p>
+      <p id="conversionResult" class="result">Converted amount will appear here.</p>
+      <p id="currencyMeta" class="meta">Last updated: -</p>
+      <p id="currencyStatus" class="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="js/currency.js"></script>
+</body>
+</html>
