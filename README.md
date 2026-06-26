@@ -1,41 +1,52 @@
 # Assignment 2 - Utilizing External API Services
 
-This project includes:
-- Weather service for Calgary (temperature, description, timestamp)
-- Currency exchange converter with 22 currencies
-- Local/session storage caching
-- Rate limiting
-- API key protection via `.env`
+This project is a standalone Node/Express website that provides:
+- Calgary weather data with current temperature, condition, daily high/low, and timestamp
+- A currency exchange converter with 22 selectable currencies and live conversion results
+- Client-side caching for weather (`localStorage`) and exchange rates (`sessionStorage`)
+- Client and server rate limiting to prevent accidental repeated calls
+- Secure API key handling with server-side `.env` configuration
+- Automatic fallback providers for local testing when API keys are not configured
 
 ## APIs Used
-- Weather: OpenWeather Current Weather API
-- Currency: ExchangeRate-API
+- Weather: OpenWeather Current Weather API (primary)
+- Currency: ExchangeRate-API (primary)
+- Fallback weather: Open-Meteo
+- Fallback currency: Frankfurter
 
 ## Setup
 1. Open terminal in `assignment2-api-services`
 2. Install dependencies:
    - `npm install`
-3. Create `.env` in this folder (same level as `server.js`):
+3. Create `.env` at the project root alongside `server.js`:
    - `OPENWEATHER_API_KEY=your_key_here`
    - `EXCHANGERATE_API_KEY=your_key_here`
    - `PORT=8080`
 4. Start the app:
    - `npm start`
-5. Open:
+5. Open in browser:
    - `http://localhost:8080`
 
-## Assignment Requirement Mapping
-- Weather for Calgary with temp, description, timestamp: implemented in `/api/weather` and rendered on page.
-- Currency converter with at least 10 currencies and from/to selection: implemented in converter UI (22 available).
-- Exchange rate display (example `1 USD = 1.44 CAD`): shown in converter result area.
-- API key protection: keys loaded from `.env` on server, never hard-coded in frontend.
-- Data persistency:
+## Files to know
+- `server.js` - backend API proxy and static file server
+- `public/index.html` - main website markup
+- `public/app.js` - frontend weather and currency logic
+- `public/styles.css` - site styling
+- `.env.example` - sample API key configuration
+
+## Assignment Mapping
+- Weather for Calgary with temperature, description, timestamp, and high/low: implemented in `/api/weather` and displayed on the page.
+- Currency converter with from/to selection: implemented using the currency selector UI with 22 currencies.
+- Exchange rate display (`1 USD = 1.44 CAD`): shown in the conversion result area.
+- API key protection: keys are loaded from `.env` in `server.js` and not exposed in frontend code.
+- Persistency:
   - Weather cached in `localStorage`
-   - Exchange rates cached in `sessionStorage` (per base currency)
+  - Exchange rates cached in `sessionStorage`
 - Rate limiting:
-  - Server-side endpoint cooldowns
-  - Client-side click cooldowns
+  - Server-side cooldowns in `server.js`
+  - Client-side click cooldowns in `public/app.js`
 
 ## Notes
 - Do not commit `.env`.
-- If weather/currency requests fail, check API keys first.
+- `.env.example` is provided as a template.
+- The live app has been verified locally in two browser tabs.
